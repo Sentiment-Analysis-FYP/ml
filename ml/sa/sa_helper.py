@@ -15,6 +15,15 @@ import itertools
 import matplotlib.style as style
 
 
+def save_as_json(dataframe, new_file_name):
+    out = dataframe.to_json(orient='records', force_ascii=False)[1:-1]
+    out = '[' + out + ']'
+
+    with open(new_file_name + '.json', 'w', encoding='utf-8') as f:
+        f.write(out)
+    # dataframe.to_json(new_file_name + '.json', orient='records', lines=True)
+
+
 def format_output(output_dict):
     polarity = "neutral"
 
@@ -88,6 +97,8 @@ def main():
         lambda txt: sentiment_analyer.polarity_scores(str(txt))['compound'])
 
     print(df.head())
+
+    save_as_json(df, '../tweet_data/test1')
 
 
 if __name__ == "__main__":

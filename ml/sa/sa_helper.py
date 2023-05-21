@@ -15,6 +15,18 @@ import itertools
 import matplotlib.style as style
 
 
+def format_output(output_dict):
+    polarity = "neutral"
+
+    if output_dict['compound'] >= 0.05:
+        polarity = "positive"
+
+    elif output_dict['compound'] <= -0.05:
+        polarity = "negative"
+
+    return polarity
+
+
 def main():
     # download vader model
     # nltk.download('vader_lexicon')
@@ -58,6 +70,24 @@ def main():
 
     user_names = df['user/name']
     print(user_names)
+
+    # added dating
+    df['date_sent'] = pd.to_datetime(df['created_at'])
+    print(df['date_sent'])
+
+    # extract date
+    df['date'] = df['date_sent'].apply(lambda x: x.date())
+    print(df['date'])
+
+    # run vader analysis
+    sentiment_analyer = SentimentIntensityAnalyzer()
+
+    df['sentiment_neg'] = df['full_text'].apply(lambda txt: sentiment_analyer.polarity_scores(str(txt))['neg'])
+    df['sentiment_pos'] = df['full_text'].apply(lambda txt: sentiment_analyer.polarity_scores(str(txt))['pos'])
+    df['sentiment_compound'] = df['full_text'].apply(
+        lambda txt: sentiment_analyer.polarity_scores(str(txt))['compound'])
+
+    print(df.head())
 
 
 if __name__ == "__main__":

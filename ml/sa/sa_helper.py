@@ -79,10 +79,8 @@ def main():
                   "user_mentions/8/id_str", "user_mentions/8/name", "user_mentions/8/screen_name",
                   "user/fast_followers_count"])
 
-    print(df.head())
-
-    user_names = df['user/name']
-    print(user_names)
+    # remove user handles
+    df['full_text'] = df['full_text'].apply(lambda x: remove_user_handles(x))
 
     # added dating
     df['date_sent'] = pd.to_datetime(df['created_at'])

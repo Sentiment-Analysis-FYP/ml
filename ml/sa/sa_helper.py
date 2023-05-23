@@ -15,6 +15,10 @@ import itertools
 import matplotlib.style as style
 
 
+def remove_user_handles(txt):
+    return ' '.join(word for word in txt.split(' ') if not word.startswith('@'))
+
+
 def save_as_json(dataframe, new_file_name):
     out = dataframe.to_json(orient='records', force_ascii=False)[1:-1]
     out = '[' + out + ']'

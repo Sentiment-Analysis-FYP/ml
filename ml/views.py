@@ -1,10 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .apps import WebAppConfig
+from .download.download_json import send_file
 
 
-def download(request):
-    return HttpResponse('<h1>Download 1</h1>')
+def download(request, file_name):
+    print(file_name)
+    response = send_file(file_name)
+    return response
 
 
 def test_connection(request):

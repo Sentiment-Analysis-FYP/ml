@@ -14,8 +14,8 @@ def send_file(file_name):
     # return HttpResponse(file, content_type='text/csv')
 
     response = HttpResponse(open(os.path.join(MEDIA_ROOT, str(file_name) + '.json'), encoding="utf-8").read())
-    response['Content-Type'] = 'text/csv'
-    response['Content-Disposition'] = 'attachment; filename=' + str(file_name) + '.csv'
+    response['Content-Type'] = 'text/json'
+    response['Content-Disposition'] = 'attachment; filename=' + str(file_name) + '.json'
     return HttpResponse(response, content_type='text/json')
 
 

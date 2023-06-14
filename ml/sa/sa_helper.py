@@ -91,12 +91,12 @@ def main():
     print(df['date'])
 
     # run vader analysis
-    sentiment_analyer = SentimentIntensityAnalyzer()
+    sentiment_analyzer = SentimentIntensityAnalyzer()
 
-    df['sentiment_neg'] = df['full_text'].apply(lambda txt: sentiment_analyer.polarity_scores(str(txt))['neg'])
-    df['sentiment_pos'] = df['full_text'].apply(lambda txt: sentiment_analyer.polarity_scores(str(txt))['pos'])
+    df['sentiment_neg'] = df['full_text'].apply(lambda txt: sentiment_analyzer.polarity_scores(str(txt))['neg'])
+    df['sentiment_pos'] = df['full_text'].apply(lambda txt: sentiment_analyzer.polarity_scores(str(txt))['pos'])
     df['sentiment_compound'] = df['full_text'].apply(
-        lambda txt: sentiment_analyer.polarity_scores(str(txt))['compound'])
+        lambda txt: sentiment_analyzer.polarity_scores(str(txt))['compound'])
 
     print(df.head())
 

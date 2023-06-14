@@ -9,8 +9,8 @@ def send_file(file_name):
     # file = open('../tweet_data/' + str(file_name) + '.json')
     # file = open(os.path.join(MEDIA_ROOT, str(file_name) + '.json'))
     # print(os.path.join(os.path.dirname(os.path.dirname(__file__)), '/'))
-    print(BASE_DIR)
-    print(os.path.join(MEDIA_ROOT, str(file_name) + '.json'))
+    # print(BASE_DIR)
+    # print(os.path.join(MEDIA_ROOT, str(file_name) + '.json'))
     # return HttpResponse(file, content_type='text/csv')
 
     response = HttpResponse(open(os.path.join(MEDIA_ROOT, str(file_name) + '.json'), encoding="utf-8").read())

@@ -21,5 +21,6 @@ from ml import views
 urlpatterns = [
     path("", views.test_connection),
     path("admin/", admin.site.urls),
-    path("download/<str:file_name>/", views.download)
+    path("download/<str:file_name>/", views.download),
+    path("upload/", views.upload)
 ]

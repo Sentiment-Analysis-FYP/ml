@@ -10,5 +10,9 @@ def download(request, file_name):
     return response
 
 
+def upload(request):
+    """Receive a json file from the node backend"""
+
+
 def test_connection(request):
     return HttpResponse('<h2>Request Received</h2>\n\n\n' + str(request.headers))

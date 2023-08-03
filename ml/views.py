@@ -5,6 +5,7 @@ from .download.download_json import send_file
 
 
 def download(request, file_name):
+    """Send the analysed json"""
     print(file_name)
     response = send_file(file_name)
     return response
